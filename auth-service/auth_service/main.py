@@ -1,8 +1,6 @@
-from fastapi import FastAPI
+import uvicorn
+from auth_service.config import Config
 
-app = FastAPI()
 
-
-@app.get("/")
-async def index():
-    return {"data": "Hello World!"}
+def main():
+    uvicorn.run(Config.app, port=Config.port, reload=Config.debug)

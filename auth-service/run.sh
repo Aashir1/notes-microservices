@@ -1,1 +1,0 @@
-uvicorn auth_service.main:app --reload
