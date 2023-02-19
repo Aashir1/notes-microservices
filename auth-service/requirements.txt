@@ -1,7 +1,5 @@
 anyio==3.6.2
 attrs==22.2.0
-# Editable install with no version control (authentication-service==0.1.0)
--e /Users/hasham/Workspace/Projects/notes-microservices/authentication-service
 black==23.1.0
 CacheControl==0.12.11
 certifi==2022.12.7
