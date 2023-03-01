@@ -2,7 +2,7 @@ package models
 
 import "gorm.io/gorm"
 
-type Notes struct {
+type Note struct {
 	gorm.Model
 	Title string
 	Body  string

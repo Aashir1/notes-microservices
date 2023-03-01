@@ -20,7 +20,7 @@ func NotesCreate(c *gin.Context) {
 	c.Bind(&body)
 
 	//Create notes
-	note := models.Notes{Title: body.Title, Body: body.Body}
+	note := models.Note{Title: body.Title, Body: body.Body}
 
 	result := initializers.DB.Create(&note) // pass pointer of data to Create
 
@@ -40,7 +40,7 @@ func NotesCreate(c *gin.Context) {
 }
 
 func GetNotes(c *gin.Context) {
-	var notes []models.Notes
+	var notes []models.Note
 
 	initializers.DB.Find(&notes)
 
@@ -53,7 +53,7 @@ func GetNotesById(c *gin.Context) {
 
 	var id = c.Param("id")
 
-	var note models.Notes
+	var note models.Note
 
 	initializers.DB.First(&note, id)
 
@@ -75,11 +75,11 @@ func UpdateNotes(c *gin.Context) {
 	c.Bind(&body)
 
 	//find note from db
-	var note models.Notes
+	var note models.Note
 	initializers.DB.First(&note, id)
 
 	//update
-	initializers.DB.Model(&note).Updates(models.Notes{Title: body.Title, Body: body.Body})
+	initializers.DB.Model(&note).Updates(models.Note{Title: body.Title, Body: body.Body})
 
 	c.JSON(200, gin.H{
 		"note": note,
@@ -90,7 +90,7 @@ func DeleteNotes(c *gin.Context) {
 
 	var id = c.Param("id")
 
-	var note models.Notes
+	var note models.Note
 
 	initializers.DB.Delete(&note, id)
 
