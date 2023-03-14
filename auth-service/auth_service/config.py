@@ -3,6 +3,7 @@ import decouple as dc
 
 class Config:
     app = "auth_service.app:app"
+    host = dc.config("HOST", default="localhost")
     port = dc.config("PORT", default=3000, cast=int)
     debug = dc.config("ENV", default="development") == "development"
 
