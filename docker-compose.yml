@@ -1,5 +1,12 @@
 version: '3'
 services:
+  db_postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: notes_microservices
 
   auth_service:
     depends_on:
@@ -8,14 +15,6 @@ services:
       context: auth-service
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - "3000:80"
     volumes:
-      - .:/app/
-
-  db_postgres:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: notes_microservices
+      - ./auth-service:/app/

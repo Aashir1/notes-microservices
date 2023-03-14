@@ -13,7 +13,7 @@ RUN pip install -r requirements.txt
 COPY poetry.lock .
 COPY pyproject.toml .
 
-RUN poetry install
+RUN poetry install --no-root
 
 # copy all the project files
 COPY . .
