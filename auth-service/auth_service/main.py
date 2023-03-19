@@ -1,6 +1,8 @@
 import uvicorn
 from auth_service.config import Config
+from auth_service.db import init_db
 
 
 def main():
-    uvicorn.run(Config.app, port=Config.port, reload=Config.debug)
+    init_db()
+    uvicorn.run(Config.app, host=Config.host, port=Config.port, reload=Config.debug)

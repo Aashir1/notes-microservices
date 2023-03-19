@@ -1,0 +1,37 @@
+version: '3'
+services:
+  db_postgres:
+    networks:
+      - net-db_postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: notes-microservices
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  auth_service:
+    networks:
+      - net-db_postgres
+    depends_on:
+      - db_postgres
+    build:
+      context: auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    volumes:
+      - ./auth-service:/app/
+networks:
+  net-db_postgres:
+    driver: bridge
