@@ -17,3 +17,4 @@ class Config:
     # auth configuration
     jwt_secret = dc.config("JWT_SECRET")
     jwt_algorithm = dc.config("JWT_ALGORITHM")
+    salt = dc.config("SALT")

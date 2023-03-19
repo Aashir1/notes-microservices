@@ -1,6 +1,8 @@
-import jwt
 import time
 from typing import Dict, Union
+
+import bcrypt
+import jwt
 from auth_service.config import Config
 
 JWT_SECRET = Config.jwt_secret
@@ -27,4 +29,9 @@ def decode_jwt(token: str) -> Union[dict, None]:
 
 
 def check_password(password: str, hashed_password: str) -> bool:
-    return false
+    return hash_password(password) == hashed_password
+
+
+def hash_password(password: str) -> str:
+    hashed = bcrypt.hashpw(password.encode(), Config.salt.encode())
+    return str(hashed)

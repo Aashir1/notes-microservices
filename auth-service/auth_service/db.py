@@ -1,8 +1,8 @@
+import psycopg2
+from auth_service.config import Config
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from auth_service.config import Config
-import psycopg2
 
 conn_str = f"postgresql+psycopg2://{Config.db_user}:{Config.db_password}@{Config.db_host}:{Config.db_port}/{Config.db_name}"
 
